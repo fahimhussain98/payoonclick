@@ -1,8 +1,11 @@
+import 'dart:ui';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:payoneclick/Api_Services/Api_Service.dart';
 import 'package:payoneclick/Api_Services/Api_models/Login_Model.dart';
+import 'package:payoneclick/Api_Services/Api_models/MainWBModel.dart';
 import 'package:payoneclick/Drawer/MyCustomDrawer.dart';
 import 'package:payoneclick/screens/JioScreen.dart';
 
@@ -25,25 +28,37 @@ class home extends StatefulWidget {
 
 class _homeState extends State<home> {
   LoginModel loginModel = LoginModel();
+  late String userID; //dynamically send to the Api Servies to the Operatornmae
 
 
   // this is methode ensure the userId pass the another class of APIservies
-  ApiServices apiServices = ApiServices();
-  late String userID;
+ // ApiServices apiServices = ApiServices(); // ye direction de rha ha , iske object se jo methode call hoga bo value diection or methode direct API serivce me call hogi
+
+
+
+
   @override
   void initState() {
     super.initState();
     // Initialize userID when the widget is initialized
      userID = widget.loginModelData?.data?.userID ?? 'Unknown';
     // Process the userID using apiServices
-     apiServices.processUserID(userID);
+   //  apiServices.processUserID(userID);//ye value hme yahi call krni hai
+
   }
+
+
+
 
 
   @override
   Widget build(BuildContext context) {
+
     bool showStateTextField = true;
     var dropdownValue;
+
+
+
     return Scaffold(
       appBar: AppBar(
         leading:  Builder(
@@ -97,7 +112,8 @@ class _homeState extends State<home> {
           ),
         ),
       ),
-      drawer: MyCustomDrawer(),  //this is drawer class
+      drawer: MyCustomDrawer(),
+      //this is drawer class
       // drawer:
       // Drawer(
       //   backgroundColor: Colors.purple[50],
@@ -468,6 +484,8 @@ class _homeState extends State<home> {
                                         JioScreen(
                                           userID: widget.loginModelData?.data?.userID ?? '', // Provide userID
                                           showStateTextField: true,
+                                          rechargeType: "Mobile Recharge", // Pass the type of recharge
+                                          serviceID: '1', // ye servies ID bassically Apiseries ke getOperatorsList  me pass hogi
                                            //WalletBalance:loginModel.data!.walletBalance,
                                          // WalletBalance: widget.WalletBalance,
                                           //  loginModelData: widget.loginModelData // ye data login -> home -> jioScreen
@@ -510,8 +528,10 @@ class _homeState extends State<home> {
                                   onTap: () {
                                     Navigator.push(context, MaterialPageRoute(builder: (context)=> JioScreen(
                                       userID: widget.loginModelData?.data?.userID ?? '', // Provide userID
-
                                       showStateTextField: false,
+                                      rechargeType: "Dth Recharge", // this is show the TEXt of the jio Screen
+                                      serviceID: '2', // ye servies ID bassically Apiseries ke getOperatorsList  me pass hogi
+
                                       //  loginModelData: widget.loginModelData //// ye data login -> home -> jioScreen
 
                                     )));

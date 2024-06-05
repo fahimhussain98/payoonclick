@@ -96,328 +96,323 @@ class _ProfilleScreenState extends State<ProfilleScreen> {
             fit: BoxFit.cover,
           ),
           SingleChildScrollView(
-            child: Positioned(
-              top: 15,
-              left: 15,
-              right: 15,
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Center(
-                    child: Text(
-                      "PROFILE",
-                      style: TextStyle(
-                        color: Colors.black,
-                        fontSize: 18,
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
-                  ),
-                 // SizedBox(height: 65),
-                  Padding(
-                    padding: EdgeInsets.only(left: 20,right: 20,top: 25),
-                    child: Text(
-                      "User Type",
-                      style: TextStyle(
-                        color: Colors.black,
-                        fontSize: 10,
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
-                  ),
-                  SizedBox(height: 5),
-                  Container(
-                    margin: EdgeInsets.only(left: 20, right: 20),
-                    color: Colors.white,
-                    child: TextFormField(
-                      initialValue:
-                       '${widget.loginModelData?.data?.userType ?? 'Unknown'}',
-                    //   String? userID = '${widget.loginModelData?.data?.userID ?? 'Unknown'}',
-                    // apiServices.processUserID(userID);
-
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Center(
+                  child: Text(
+                    "PROFILE",
                     style: TextStyle(
-                        color: Colors.black,
-                        fontSize: 13,
-                        fontWeight: FontWeight.bold,
-                      ),
-                      enabled: false, // Make the TextFormField read-only
-                      decoration: InputDecoration(
-                        border: OutlineInputBorder(
-                          borderSide: BorderSide(color: Colors.black), // Set the default border color to black
-                        ),
-                        enabledBorder: OutlineInputBorder(
-                          borderSide: BorderSide(color: Colors.black), // Set the border color when the field is not focused to black
-                        ),
-                        focusedBorder: OutlineInputBorder(
-                          borderSide: BorderSide(color: Colors.black), // Set the border color when the field is focused to black
-                        ),
-                        disabledBorder: OutlineInputBorder(
-                          borderSide: BorderSide(color: Colors.black), // Set the border color when the field is disabled to black
-                        ),
-                        contentPadding: EdgeInsets.symmetric(vertical: 13.0, horizontal: 13.0), // Adjust padding to decrease height
-                      ),
+                      color: Colors.black,
+                      fontSize: 18,
+                      fontWeight: FontWeight.bold,
                     ),
                   ),
+                ),
+               // SizedBox(height: 65),
+                Padding(
+                  padding: EdgeInsets.only(left: 20,right: 20,top: 25),
+                  child: Text(
+                    "User Type",
+                    style: TextStyle(
+                      color: Colors.black,
+                      fontSize: 10,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                ),
+                SizedBox(height: 5),
+                Container(
+                  margin: EdgeInsets.only(left: 20, right: 20),
+                  color: Colors.white,
+                  child: TextFormField(
+                    initialValue:
+                     '${widget.loginModelData?.data?.userType ?? 'Unknown'}',
+                  //   String? userID = '${widget.loginModelData?.data?.userID ?? 'Unknown'}',
+                  // apiServices.processUserID(userID);
+
+                  style: TextStyle(
+                      color: Colors.black,
+                      fontSize: 13,
+                      fontWeight: FontWeight.bold,
+                    ),
+                    enabled: false, // Make the TextFormField read-only
+                    decoration: InputDecoration(
+                      border: OutlineInputBorder(
+                        borderSide: BorderSide(color: Colors.black), // Set the default border color to black
+                      ),
+                      enabledBorder: OutlineInputBorder(
+                        borderSide: BorderSide(color: Colors.black), // Set the border color when the field is not focused to black
+                      ),
+                      focusedBorder: OutlineInputBorder(
+                        borderSide: BorderSide(color: Colors.black), // Set the border color when the field is focused to black
+                      ),
+                      disabledBorder: OutlineInputBorder(
+                        borderSide: BorderSide(color: Colors.black), // Set the border color when the field is disabled to black
+                      ),
+                      contentPadding: EdgeInsets.symmetric(vertical: 13.0, horizontal: 13.0), // Adjust padding to decrease height
+                    ),
+                  ),
+                ),
 
 
 
 
-                  SizedBox(height: 10),
-            
-                  Padding(
-                    padding:  EdgeInsets.only(left: 20,right: 20),
-                    child: Text(
-                      "Name",
-                      style: TextStyle(
-                        color: Colors.black,
-                        fontSize: 10,
-                        fontWeight: FontWeight.bold,
-                      ),
+                SizedBox(height: 10),
+
+                Padding(
+                  padding:  EdgeInsets.only(left: 20,right: 20),
+                  child: Text(
+                    "Name",
+                    style: TextStyle(
+                      color: Colors.black,
+                      fontSize: 10,
+                      fontWeight: FontWeight.bold,
                     ),
                   ),
-                  SizedBox(height: 5),
-                  Container(
-                    margin: EdgeInsets.only(left: 20, right: 20),
-                    color: Colors.white,
-                    child: TextFormField(
-                      initialValue: '${widget.loginModelData?.data?.name ?? 'Unknown'}',
-                      style: TextStyle(
-                        color: Colors.black,
-                        fontSize: 13,
-                        fontWeight: FontWeight.bold,
+                ),
+                SizedBox(height: 5),
+                Container(
+                  margin: EdgeInsets.only(left: 20, right: 20),
+                  color: Colors.white,
+                  child: TextFormField(
+                    initialValue: '${widget.loginModelData?.data?.name ?? 'Unknown'}',
+                    style: TextStyle(
+                      color: Colors.black,
+                      fontSize: 13,
+                      fontWeight: FontWeight.bold,
+                    ),
+                    enabled: false, // Make the TextFormField read-only
+                    decoration: InputDecoration(
+                      border: OutlineInputBorder(
+                        borderSide: BorderSide(color: Colors.black), // Set the default border color to black
                       ),
-                      enabled: false, // Make the TextFormField read-only
-                      decoration: InputDecoration(
-                        border: OutlineInputBorder(
-                          borderSide: BorderSide(color: Colors.black), // Set the default border color to black
-                        ),
-                        enabledBorder: OutlineInputBorder(
-                          borderSide: BorderSide(color: Colors.black), // Set the border color when the field is not focused to black
-                        ),
-                        focusedBorder: OutlineInputBorder(
-                          borderSide: BorderSide(color: Colors.black), // Set the border color when the field is focused to black
-                        ),
-                        disabledBorder: OutlineInputBorder(
-                          borderSide: BorderSide(color: Colors.black), // Set the border color when the field is disabled to black
-                        ),
-                        contentPadding: EdgeInsets.symmetric(vertical: 13.0, horizontal: 13.0), // Adjust padding to decrease height
+                      enabledBorder: OutlineInputBorder(
+                        borderSide: BorderSide(color: Colors.black), // Set the border color when the field is not focused to black
                       ),
+                      focusedBorder: OutlineInputBorder(
+                        borderSide: BorderSide(color: Colors.black), // Set the border color when the field is focused to black
+                      ),
+                      disabledBorder: OutlineInputBorder(
+                        borderSide: BorderSide(color: Colors.black), // Set the border color when the field is disabled to black
+                      ),
+                      contentPadding: EdgeInsets.symmetric(vertical: 13.0, horizontal: 13.0), // Adjust padding to decrease height
                     ),
                   ),
-                  SizedBox(height: 10),
-            
-                  Padding(
-                    padding:  EdgeInsets.only(left: 20,right: 20),
-                    child: Text(
-                      "Contact No",
-                      style: TextStyle(
-                        color: Colors.black,
-                        fontSize: 10,
-                        fontWeight: FontWeight.bold,
-                      ),
+                ),
+                SizedBox(height: 10),
+
+                Padding(
+                  padding:  EdgeInsets.only(left: 20,right: 20),
+                  child: Text(
+                    "Contact No",
+                    style: TextStyle(
+                      color: Colors.black,
+                      fontSize: 10,
+                      fontWeight: FontWeight.bold,
                     ),
                   ),
-                  SizedBox(height: 5),
-                  Container(
-                    margin: EdgeInsets.only(left: 20, right: 20),
-                    color: Colors.white,
-                    child: TextFormField(
-                      initialValue: '${widget.loginModelData?.data?.mobileNo ?? 'Unknown'}',
-                      style: TextStyle(
-                        color: Colors.black,
-                        fontSize: 13,
-                        fontWeight: FontWeight.bold,
+                ),
+                SizedBox(height: 5),
+                Container(
+                  margin: EdgeInsets.only(left: 20, right: 20),
+                  color: Colors.white,
+                  child: TextFormField(
+                    initialValue: '${widget.loginModelData?.data?.mobileNo ?? 'Unknown'}',
+                    style: TextStyle(
+                      color: Colors.black,
+                      fontSize: 13,
+                      fontWeight: FontWeight.bold,
+                    ),
+                    enabled: false, // Make the TextFormField read-only
+                    decoration: InputDecoration(
+                      border: OutlineInputBorder(
+                        borderSide: BorderSide(color: Colors.black), // Set the default border color to black
                       ),
-                      enabled: false, // Make the TextFormField read-only
-                      decoration: InputDecoration(
-                        border: OutlineInputBorder(
-                          borderSide: BorderSide(color: Colors.black), // Set the default border color to black
-                        ),
-                        enabledBorder: OutlineInputBorder(
-                          borderSide: BorderSide(color: Colors.black), // Set the border color when the field is not focused to black
-                        ),
-                        focusedBorder: OutlineInputBorder(
-                          borderSide: BorderSide(color: Colors.black), // Set the border color when the field is focused to black
-                        ),
-                        disabledBorder: OutlineInputBorder(
-                          borderSide: BorderSide(color: Colors.black), // Set the border color when the field is disabled to black
-                        ),
-                        contentPadding: EdgeInsets.symmetric(vertical: 13.0, horizontal: 13.0), // Adjust padding to decrease height
+                      enabledBorder: OutlineInputBorder(
+                        borderSide: BorderSide(color: Colors.black), // Set the border color when the field is not focused to black
                       ),
+                      focusedBorder: OutlineInputBorder(
+                        borderSide: BorderSide(color: Colors.black), // Set the border color when the field is focused to black
+                      ),
+                      disabledBorder: OutlineInputBorder(
+                        borderSide: BorderSide(color: Colors.black), // Set the border color when the field is disabled to black
+                      ),
+                      contentPadding: EdgeInsets.symmetric(vertical: 13.0, horizontal: 13.0), // Adjust padding to decrease height
                     ),
                   ),
-                  SizedBox(height: 10),
-            
-                  Padding(
-                    padding:  EdgeInsets.only(left: 20,right: 20),
-                    child: Text(
-                      "Email ID",
-                      style: TextStyle(
-                        color: Colors.black,
-                        fontSize: 10,
-                        fontWeight: FontWeight.bold,
-                      ),
+                ),
+                SizedBox(height: 10),
+
+                Padding(
+                  padding:  EdgeInsets.only(left: 20,right: 20),
+                  child: Text(
+                    "Email ID",
+                    style: TextStyle(
+                      color: Colors.black,
+                      fontSize: 10,
+                      fontWeight: FontWeight.bold,
                     ),
                   ),
-                  SizedBox(height: 5),
-                  Container(
-                    margin: EdgeInsets.only(left: 20, right: 20),
-                    color: Colors.white,
-                    child: TextFormField(
-                      initialValue: '${widget.loginModelData?.data?.emailID ?? 'Unknown'}',
-                      style: TextStyle(
-                        color: Colors.black,
-                        fontSize: 13,
-                        fontWeight: FontWeight.bold,
+                ),
+                SizedBox(height: 5),
+                Container(
+                  margin: EdgeInsets.only(left: 20, right: 20),
+                  color: Colors.white,
+                  child: TextFormField(
+                    initialValue: '${widget.loginModelData?.data?.emailID ?? 'Unknown'}',
+                    style: TextStyle(
+                      color: Colors.black,
+                      fontSize: 13,
+                      fontWeight: FontWeight.bold,
+                    ),
+                    enabled: false, // Make the TextFormField read-only
+                    decoration: InputDecoration(
+                      border: OutlineInputBorder(
+                        borderSide: BorderSide(color: Colors.black), // Set the default border color to black
                       ),
-                      enabled: false, // Make the TextFormField read-only
-                      decoration: InputDecoration(
-                        border: OutlineInputBorder(
-                          borderSide: BorderSide(color: Colors.black), // Set the default border color to black
-                        ),
-                        enabledBorder: OutlineInputBorder(
-                          borderSide: BorderSide(color: Colors.black), // Set the border color when the field is not focused to black
-                        ),
-                        focusedBorder: OutlineInputBorder(
-                          borderSide: BorderSide(color: Colors.black), // Set the border color when the field is focused to black
-                        ),
-                        disabledBorder: OutlineInputBorder(
-                          borderSide: BorderSide(color: Colors.black), // Set the border color when the field is disabled to black
-                        ),
-                        contentPadding: EdgeInsets.symmetric(vertical: 13.0, horizontal: 13.0), // Adjust padding to decrease height
+                      enabledBorder: OutlineInputBorder(
+                        borderSide: BorderSide(color: Colors.black), // Set the border color when the field is not focused to black
                       ),
+                      focusedBorder: OutlineInputBorder(
+                        borderSide: BorderSide(color: Colors.black), // Set the border color when the field is focused to black
+                      ),
+                      disabledBorder: OutlineInputBorder(
+                        borderSide: BorderSide(color: Colors.black), // Set the border color when the field is disabled to black
+                      ),
+                      contentPadding: EdgeInsets.symmetric(vertical: 13.0, horizontal: 13.0), // Adjust padding to decrease height
                     ),
                   ),
-                  SizedBox(height: 10),
-                  Padding(
-                    padding:  EdgeInsets.only(left: 20,right: 20),
-                    child: Text(
-                      "Address",
-                      style: TextStyle(
-                        color: Colors.black,
-                        fontSize: 10,
-                        fontWeight: FontWeight.bold,
-                      ),
+                ),
+                SizedBox(height: 10),
+                Padding(
+                  padding:  EdgeInsets.only(left: 20,right: 20),
+                  child: Text(
+                    "Address",
+                    style: TextStyle(
+                      color: Colors.black,
+                      fontSize: 10,
+                      fontWeight: FontWeight.bold,
                     ),
                   ),
-                  SizedBox(height: 5),
-                  Container(
-                    margin: EdgeInsets.only(left: 20, right: 20),
-                    color: Colors.white,
-                    child: TextFormField(
-                      initialValue: '${widget.loginModelData?.data?.address ?? 'Unknown'}',
-                      style: TextStyle(
-                        color: Colors.black,
-                        fontSize: 13,
-                        fontWeight: FontWeight.bold,
+                ),
+                SizedBox(height: 5),
+                Container(
+                  margin: EdgeInsets.only(left: 20, right: 20),
+                  color: Colors.white,
+                  child: TextFormField(
+                    initialValue: '${widget.loginModelData?.data?.address ?? 'Unknown'}',
+                    style: TextStyle(
+                      color: Colors.black,
+                      fontSize: 13,
+                      fontWeight: FontWeight.bold,
+                    ),
+                    enabled: false, // Make the TextFormField read-only
+                    decoration: InputDecoration(
+                      border: OutlineInputBorder(
+                        borderSide: BorderSide(color: Colors.black), // Set the default border color to black
                       ),
-                      enabled: false, // Make the TextFormField read-only
-                      decoration: InputDecoration(
-                        border: OutlineInputBorder(
-                          borderSide: BorderSide(color: Colors.black), // Set the default border color to black
-                        ),
-                        enabledBorder: OutlineInputBorder(
-                          borderSide: BorderSide(color: Colors.black), // Set the border color when the field is not focused to black
-                        ),
-                        focusedBorder: OutlineInputBorder(
-                          borderSide: BorderSide(color: Colors.black), // Set the border color when the field is focused to black
-                        ),
-                        disabledBorder: OutlineInputBorder(
-                          borderSide: BorderSide(color: Colors.black), // Set the border color when the field is disabled to black
-                        ),
-                        contentPadding: EdgeInsets.symmetric(vertical: 13.0, horizontal: 13.0), // Adjust padding to decrease height
+                      enabledBorder: OutlineInputBorder(
+                        borderSide: BorderSide(color: Colors.black), // Set the border color when the field is not focused to black
                       ),
+                      focusedBorder: OutlineInputBorder(
+                        borderSide: BorderSide(color: Colors.black), // Set the border color when the field is focused to black
+                      ),
+                      disabledBorder: OutlineInputBorder(
+                        borderSide: BorderSide(color: Colors.black), // Set the border color when the field is disabled to black
+                      ),
+                      contentPadding: EdgeInsets.symmetric(vertical: 13.0, horizontal: 13.0), // Adjust padding to decrease height
                     ),
                   ),
+                ),
 
 
 
 
 
-                  SizedBox(height: 10),
-                  Padding(
-                    padding:  EdgeInsets.only(left: 20,right: 20),
-                    child: Text(
-                      "Aadhar No.",
-                      style: TextStyle(
-                        color: Colors.black,
-                        fontSize: 10,
-                        fontWeight: FontWeight.bold,
-                      ),
+                SizedBox(height: 10),
+                Padding(
+                  padding:  EdgeInsets.only(left: 20,right: 20),
+                  child: Text(
+                    "Aadhar No.",
+                    style: TextStyle(
+                      color: Colors.black,
+                      fontSize: 10,
+                      fontWeight: FontWeight.bold,
                     ),
                   ),
-                  SizedBox(height: 5),
-                  Container(
-                    margin: EdgeInsets.only(left: 20, right: 20),
-                    color: Colors.white,
-                    child: TextFormField(
-                      initialValue: '${widget.loginModelData?.data?.aadharNo ?? 'Unknown'}',
-                      style: TextStyle(
-                        color: Colors.black,
-                        fontSize: 13,
-                        fontWeight: FontWeight.bold,
+                ),
+                SizedBox(height: 5),
+                Container(
+                  margin: EdgeInsets.only(left: 20, right: 20),
+                  color: Colors.white,
+                  child: TextFormField(
+                    initialValue: '${widget.loginModelData?.data?.aadharNo ?? 'Unknown'}',
+                    style: TextStyle(
+                      color: Colors.black,
+                      fontSize: 13,
+                      fontWeight: FontWeight.bold,
+                    ),
+                    enabled: false, // Make the TextFormField read-only
+                    decoration: InputDecoration(
+                      border: OutlineInputBorder(
+                        borderSide: BorderSide(color: Colors.black), // Set the default border color to black
                       ),
-                      enabled: false, // Make the TextFormField read-only
-                      decoration: InputDecoration(
-                        border: OutlineInputBorder(
-                          borderSide: BorderSide(color: Colors.black), // Set the default border color to black
-                        ),
-                        enabledBorder: OutlineInputBorder(
-                          borderSide: BorderSide(color: Colors.black), // Set the border color when the field is not focused to black
-                        ),
-                        focusedBorder: OutlineInputBorder(
-                          borderSide: BorderSide(color: Colors.black), // Set the border color when the field is focused to black
-                        ),
-                        disabledBorder: OutlineInputBorder(
-                          borderSide: BorderSide(color: Colors.black), // Set the border color when the field is disabled to black
-                        ),
-                        contentPadding: EdgeInsets.symmetric(vertical: 13.0, horizontal: 13.0), // Adjust padding to decrease height
+                      enabledBorder: OutlineInputBorder(
+                        borderSide: BorderSide(color: Colors.black), // Set the border color when the field is not focused to black
                       ),
+                      focusedBorder: OutlineInputBorder(
+                        borderSide: BorderSide(color: Colors.black), // Set the border color when the field is focused to black
+                      ),
+                      disabledBorder: OutlineInputBorder(
+                        borderSide: BorderSide(color: Colors.black), // Set the border color when the field is disabled to black
+                      ),
+                      contentPadding: EdgeInsets.symmetric(vertical: 13.0, horizontal: 13.0), // Adjust padding to decrease height
                     ),
                   ),
-                  SizedBox(height: 10),
-                  Padding(
-                    padding:  EdgeInsets.only(left: 20,right: 20),
-                    child: Text(
-                      "Pan No.",
-                      style: TextStyle(
-                        color: Colors.black,
-                        fontSize: 10,
-                        fontWeight: FontWeight.bold,
-                      ),
+                ),
+                SizedBox(height: 10),
+                Padding(
+                  padding:  EdgeInsets.only(left: 20,right: 20),
+                  child: Text(
+                    "Pan No.",
+                    style: TextStyle(
+                      color: Colors.black,
+                      fontSize: 10,
+                      fontWeight: FontWeight.bold,
                     ),
                   ),
-                  SizedBox(height: 5),
-                  Container(
-                    margin: EdgeInsets.only(left: 20, right: 20),
-                    color: Colors.white,
-                    child: TextFormField(
-                      initialValue: '${widget.loginModelData?.data?.panCardNo ?? 'Unknown'}',
-                      style: TextStyle(
-                        color: Colors.black,
-                        fontSize: 13,
-                        fontWeight: FontWeight.bold,
+                ),
+                SizedBox(height: 5),
+                Container(
+                  margin: EdgeInsets.only(left: 20, right: 20),
+                  color: Colors.white,
+                  child: TextFormField(
+                    initialValue: '${widget.loginModelData?.data?.panCardNo ?? 'Unknown'}',
+                    style: TextStyle(
+                      color: Colors.black,
+                      fontSize: 13,
+                      fontWeight: FontWeight.bold,
+                    ),
+                    enabled: false, // Make the TextFormField read-only
+                    decoration: InputDecoration(
+                      border: OutlineInputBorder(
+                        borderSide: BorderSide(color: Colors.black), // Set the default border color to black
                       ),
-                      enabled: false, // Make the TextFormField read-only
-                      decoration: InputDecoration(
-                        border: OutlineInputBorder(
-                          borderSide: BorderSide(color: Colors.black), // Set the default border color to black
-                        ),
-                        enabledBorder: OutlineInputBorder(
-                          borderSide: BorderSide(color: Colors.black), // Set the border color when the field is not focused to black
-                        ),
-                        focusedBorder: OutlineInputBorder(
-                          borderSide: BorderSide(color: Colors.black), // Set the border color when the field is focused to black
-                        ),
-                        disabledBorder: OutlineInputBorder(
-                          borderSide: BorderSide(color: Colors.black), // Set the border color when the field is disabled to black
-                        ),
-                        contentPadding: EdgeInsets.symmetric(vertical: 13.0, horizontal: 13.0), // Adjust padding to decrease height
+                      enabledBorder: OutlineInputBorder(
+                        borderSide: BorderSide(color: Colors.black), // Set the border color when the field is not focused to black
                       ),
+                      focusedBorder: OutlineInputBorder(
+                        borderSide: BorderSide(color: Colors.black), // Set the border color when the field is focused to black
+                      ),
+                      disabledBorder: OutlineInputBorder(
+                        borderSide: BorderSide(color: Colors.black), // Set the border color when the field is disabled to black
+                      ),
+                      contentPadding: EdgeInsets.symmetric(vertical: 13.0, horizontal: 13.0), // Adjust padding to decrease height
                     ),
                   ),
-                ],
-              ),
+                ),
+              ],
             ),
           ),
         ],

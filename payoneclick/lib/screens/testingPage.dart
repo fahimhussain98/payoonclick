@@ -14,6 +14,7 @@
 //
 //
 //
+//
 // class Testingpage extends StatefulWidget {
 //
 //   final bool showStateTextField;
@@ -36,34 +37,52 @@
 //   var dropdownValue;
 //   String? _selectedState;
 //   bool isLoading = true;
-//   String? dropdownValue2;
+//   String? dropdownValue2; //this is for the selcet Operator
 //   List<String> operatorNames = [];
+//   List<Data_DrownButtonModel> operatorData =[];
+//   //final String baseUrl = "http://ImageUpload/56815374889615.png"; // Replace with your actual base URL
+//
 //
 //   @override
 //   void initState() {
 //     super.initState();
-//     fetchOperatorNames(widget.userID);
+//     fetchOperatorNames();//widget.userID
 //   }
-//   Future<void> fetchOperatorNames(String userID) async {
-//     ApiServices apiServices = ApiServices();
-//     DropDrownButtonModel? dropdownButtonModel = await apiServices.getOperatorsList(userID);
 //
-//     List<String> names = [];
+//   @override
+//   Future<void> fetchOperatorNames() async {//String userID
+//     ApiServices apiServices = ApiServices();
+//     DropDrownButtonModel? dropdownButtonModel = await apiServices.getOperatorsList();//userID
+//
+//    // List<String> names = [];
+//     List<Data_DrownButtonModel> dataList = [];
+//     // if (dropdownButtonModel != null && dropdownButtonModel.data != null) {
+//     //   for (var data in dropdownButtonModel.data!) {
+//     //     if (data.operatorName != null) {
+//     //       names.add(data.operatorName!);
+//     //     }
+//     //   }
+//     // }
 //     if (dropdownButtonModel != null && dropdownButtonModel.data != null) {
-//       for (var data in dropdownButtonModel.data!) {
-//         if (data.operatorName != null) {
-//           names.add(data.operatorName!);
-//         }
-//       }
+//       dataList = dropdownButtonModel.data!;
 //     }
 //
+//   //   setState(() {
+//   //     operatorNames = names;
+//   //     if (operatorNames.isNotEmpty) {
+//   //       dropdownValue = operatorNames.first;
+//   //     }
+//   //   });
+//   // }
 //     setState(() {
-//       operatorNames = names;
-//       if (operatorNames.isNotEmpty) {
-//         dropdownValue = operatorNames.first;
-//       }
+//       operatorData = dataList;
+//       // if (operatorData.isNotEmpty) {
+//       //   dropdownValue2 = operatorData.first.operatorName;
+//       // }
 //     });
 //   }
+//
+//
 //
 //
 //
@@ -219,29 +238,50 @@
 //                           //
 //                           //   ),
 //                           // ),
-//                           Center(
-//                             child: Container(
-//                               decoration: BoxDecoration(
-//                                   border: Border.all(color: Colors.grey, width: 1)),
-//                               child: DropdownButton<String>(
-//                                 value: dropdownValue2,
-//                                 isExpanded: true,
-//                                 underline: SizedBox(),
-//                                 onChanged: (String? newValue) {
-//                                   setState(() {
-//                                     dropdownValue2 = newValue!;
-//                                   });
-//                                 },
-//                                 items: operatorNames.map<DropdownMenuItem<String>>((String value) {
-//                                   return DropdownMenuItem<String>(
-//                                     value: value,
-//                                     child: Text(value),
-//                                   );
-//                                 }).toList(),
-//                                 dropdownColor: Colors.grey[50],
-//                               ),
+//                           Container(
+//                             height: 55,
+//
+//                             padding: EdgeInsets.all(8.0),
+//                             decoration: BoxDecoration(
+//                               border: Border.all(color: Colors.grey, width: 1),
+//                             ),
+//                             child: DropdownButton<String>(
+//                               value: dropdownValue2,
+//                               isExpanded: true,
+//                               underline: SizedBox(),
+//                               hint: Text('Select the operator'),
+//                               onChanged: (String? newValue) {
+//                                 setState(() {
+//                                   dropdownValue2 = newValue!;
+//                                 });
+//                               },
+//                               items: operatorData.map<DropdownMenuItem<String>>((Data_DrownButtonModel data) {
+//                                 return DropdownMenuItem<String>(
+//                                   value: data.operatorName,
+//                                   child: Row(
+//                                     children: [
+//                                       if (data.oPImage != null)
+//                                         Container(
+//
+//                                          // color: Colors.amber,
+//                                           child: Image.network(
+//                                             'http://login.payonclick.in${data.oPImage}',
+//                                             height: 24,width: 24,
+//                                           ),
+//                                         ),
+//                                       SizedBox(width: 10),
+//                                       Text(
+//                                         data.operatorName ?? '',style: TextStyle(fontSize: 14,fontWeight: FontWeight.normal),
+//                                         overflow: TextOverflow.ellipsis,
+//                                       ),
+//                                     ],
+//                                   ),
+//                                 );
+//                               }).toList(),
+//                               dropdownColor: Colors.grey[50],
 //                             ),
 //                           ),
+//
 //                           SizedBox(height: 5,),
 //
 //

@@ -103,31 +103,26 @@ class _Loginpage extends State<Loginpage> {
                   ),
                 ),
               ),
-              Positioned(
-                top: 350,
-                left: 0,
-                right: 0,
-                child: Row(
-                  children: [
-                    Theme(
-                      data: ThemeData(
-                        unselectedWidgetColor: Colors.white,
-                      ),
-                      child: Checkbox(
-                        value: _isChecked,
-                        onChanged: (bool? value) {
-                          setState(() {
-                            _isChecked = value!;
-                          });
-                        },
-                      ),
+              Row(
+                children: [
+                  Theme(
+                    data: ThemeData(
+                      unselectedWidgetColor: Colors.white,
                     ),
-                    Text(
-                      'Remember Me',
-                      style: TextStyle(fontSize: 15, color: Colors.black),
+                    child: Checkbox(
+                      value: _isChecked,
+                      onChanged: (bool? value) {
+                        setState(() {
+                          _isChecked = value!;
+                        });
+                      },
                     ),
-                  ],
-                ),
+                  ),
+                  Text(
+                    'Remember Me',
+                    style: TextStyle(fontSize: 15, color: Colors.black),
+                  ),
+                ],
               ),
               Container(
                 margin: EdgeInsets.only(left: 15, right: 15, top: 50),
@@ -185,13 +180,13 @@ class _Loginpage extends State<Loginpage> {
                   ),
                 ),
               ),
-              Container(
-                child: Column(
-                  children: [
-                  //  Text(ApiServices.loginwithModel!)
-                  ],
-                ),
-              )
+              // Container(
+              //   child: Column(
+              //     children: [
+              //     //  Text(ApiServices.loginwithModel!)
+              //     ],
+              //   ),
+              // )
 
               // Align(
               //   alignment: Alignment.center,

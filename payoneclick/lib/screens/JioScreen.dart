@@ -1,27 +1,25 @@
+
+
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:payoneclick/Api_Services/Api_Service.dart';
-import 'package:payoneclick/Api_Services/Api_models/Login_Model.dart';
 import 'package:payoneclick/Api_Services/Api_models/MainWBModel.dart';
 import 'package:payoneclick/Api_Services/Api_models/RechargeModel/DropDrownButtonModel.dart';
 
 class JioScreen extends StatefulWidget {
   final String userID;
-
+  final String rechargeType; //// this is show the TEXt in the jio Screen
   final bool showStateTextField;
+  final String serviceID; // this is pass the dynamically
  // final String? WalletBalance;
   //final LoginModel? loginModelData; //isse sara data aa rhe hai login API se
-
-
-
-
-
-
-
   const JioScreen({
     Key? key,
     required this.showStateTextField,
-    required this.userID
+    required this.userID,
+    required this.rechargeType,
+    required this.serviceID, // this is pass the dynamically to the APIServies
    // required this.loginModelData,
   }) : super(key: key);
 
@@ -31,26 +29,21 @@ class JioScreen extends StatefulWidget {
 }
 
 class _JioScreenState extends State<JioScreen> {
+  TextEditingController subscribeIDcontroller = TextEditingController();
   var showStateTextField = false;
   var dropdownValue;
-
   MainWBModel? MWBmodel;
   bool isLoading = true;
-   ApiServices apiServices = ApiServices();
+  ApiServices apiServices = ApiServices();
 
   @override
   void initState() {
     super.initState();
     fetch_MainWB(widget.userID);
-    fetchOperatorNames(widget.userID);
+    fetchOperatorNames(widget.userID,widget.serviceID);//widget.userID
 
   }
-  Future<void> fetch_MainWB(String userID) async {//String userID
-    MWBmodel = await apiServices.fetchMainWB(userID);//userID
-    setState(() {
-      isLoading = false;
-    });
-  }
+
   String? _selectedState;
 
   final List<String> _states = [
@@ -79,27 +72,28 @@ class _JioScreenState extends State<JioScreen> {
   ];
   //++++++++++++++++++++++++++++++++++++++++++
   String? dropdownValue2; //this is hold the value of the getOperator
-  List<String> operatorNames = [];
+  List<Data_DrownButtonModel> operatorData =[];
+  List<Data_DrownButtonModel> dataList = [];
 
-  @override
-  Future<void> fetchOperatorNames(String userID) async {
-    ApiServices apiServices = ApiServices();
-    DropDrownButtonModel? dropdownButtonModel = await apiServices.getOperatorsList(userID);
 
-    List<String> names = [];
-    if (dropdownButtonModel != null && dropdownButtonModel.data != null) {
-      for (var data in dropdownButtonModel.data!) {
-        if (data.operatorName != null) {
-          names.add(data.operatorName!);
-        }
-      }
-    }
-
+  Future<void> fetch_MainWB(String userID) async {//String userID
+    MWBmodel = await apiServices.fetchMainWB(userID);//userID
     setState(() {
-      operatorNames = names;
-      if (operatorNames.isNotEmpty) {
-        dropdownValue = operatorNames.first;
-      }
+      isLoading = false;
+    });
+  }
+
+  //this methode for the Operator on the jioScreen
+  @override
+  Future<void> fetchOperatorNames(String userID,String serviceID) async {//String userID
+    ApiServices apiServices = ApiServices();
+    DropDrownButtonModel? dropdownButtonModel = await apiServices.getOperatorsList(userID,serviceID);//userID
+    if (dropdownButtonModel != null && dropdownButtonModel.data != null) {
+      dataList = dropdownButtonModel.data!;
+    }
+    setState(() {
+      operatorData = dataList;
+
     });
   }
 
@@ -107,6 +101,11 @@ class _JioScreenState extends State<JioScreen> {
 
   @override
   Widget build(BuildContext context) {
+    print(_selectedState);
+    print(dropdownValue2);
+    print(subscribeIDcontroller);
+
+
     return  Scaffold(
      // resizeToAvoidBottomInset: false,
       appBar: AppBar(
@@ -140,9 +139,9 @@ class _JioScreenState extends State<JioScreen> {
 
             child:
             Container(
-              margin: EdgeInsets.only(left: 25, right: 25, top: 100),
+              margin: EdgeInsets.only(left: 25, right: 25, top: 95),
               width: 360,
-              height: 560,
+              height: 550,
               decoration: BoxDecoration(
                 color: Colors.grey[50],
                 boxShadow: [
@@ -178,10 +177,17 @@ class _JioScreenState extends State<JioScreen> {
                       //
                       //   ),
                       // ),
+
                       Padding(
-                        padding: const EdgeInsets.only(top: 50,left: 15,right: 15),
-                        child: Text("DTH RECHARGE",style: TextStyle(fontSize: 20,fontWeight: FontWeight.bold,color: Color(0xFF046DB5),
-                        )),
+                        padding: const EdgeInsets.only(top: 40,left: 15,right: 15),
+                        child: Text(
+                          widget.rechargeType, // Use the passed parameter to set the text
+                          style: TextStyle(
+                            fontSize: 20,
+                            fontWeight: FontWeight.bold,
+                            color: Color(0xFF046DB5),
+                          ),
+                        ),
                       ),
                       SizedBox(height: 5),
                       Column(
@@ -192,6 +198,7 @@ class _JioScreenState extends State<JioScreen> {
                           SizedBox(
                             height: 50, // Specify the desired height here
                             child: TextField(
+                              controller: subscribeIDcontroller,
                               decoration: InputDecoration(
                                 border: OutlineInputBorder(
                                   borderSide: BorderSide(color: Colors.grey,width: 1), // Set the default border color to gray
@@ -209,35 +216,54 @@ class _JioScreenState extends State<JioScreen> {
                           //this is Droupdown
                           Text("Seclet Operator"),
                           SizedBox(height: 5,),
-                          Container(
 
+                          Container(
+                            height: 50,
+
+                            padding: EdgeInsets.all(8.0),
                             decoration: BoxDecoration(
-                                border: Border.all(color: Colors.grey, width: 1)),
-                            child: Padding(
-                              padding: const EdgeInsets.only(left: 15),
-                              child: DropdownButton<String>(
-                                value: dropdownValue2,
-                                isExpanded: true,
-                                underline: SizedBox(),
-                                hint: Text('Select the operator'),
-                                onChanged: (String? newValue) {
-                                  setState(() {
-                                    dropdownValue2 = newValue!;
-                                  });
-                                },
-                                items: operatorNames.map<DropdownMenuItem<String>>((String value) {
-                                  return DropdownMenuItem<String>(
-                                    value: value,
-                                    child: Text(value),
-                                  );
-                                }).toList(),
-                                dropdownColor: Colors.grey[50],
-                              ),
+                              border: Border.all(color: Colors.grey, width: 1),
+                            ),
+                            child: DropdownButton<String>(
+                              value: dropdownValue2,
+                              isExpanded: true,
+                              underline: SizedBox(),
+                              hint: Text('Select the operator',style: TextStyle(fontWeight: FontWeight.normal,fontSize: 15,color: Colors.grey),),
+                              onChanged: (String? newValue) {
+                                setState(() {
+                                  dropdownValue2 = newValue!;
+                                });
+                              },
+                              items: operatorData.map<DropdownMenuItem<String>>((Data_DrownButtonModel data) {
+                                return DropdownMenuItem<String>(
+
+                                  value: data.operatorName,
+                                  child: Row(
+                                    children: [
+                                      if (data.oPImage != null)
+                                        Container(
+
+                                          // color: Colors.amber,
+                                          child: Image.network(
+                                            'http://login.payonclick.in${data.oPImage}',
+                                            height: 30,width: 30,
+                                          ),
+                                        ),
+                                      SizedBox(width: 10),
+                                      Text(
+                                        data.operatorName ?? '',style: TextStyle(fontSize: 14,fontWeight: FontWeight.normal),
+                                        overflow: TextOverflow.ellipsis,
+                                      ),
+                                    ],
+                                  ),
+                                );
+                              }).toList(),
+                              dropdownColor: Colors.grey[50],
                             ),
                           ),
 
 
-                          SizedBox(height: 5,),
+                          SizedBox(height: 10,),
 
 
 
@@ -275,11 +301,11 @@ class _JioScreenState extends State<JioScreen> {
                                         _selectedState = newValue;
                                       });
                                     },
-                                    hint: Text("Select a State"),
+                                    hint: Text("Select a State",style: TextStyle(fontWeight: FontWeight.normal,fontSize: 15,color: Colors.grey),),
                                   ),
                                 ),
                                 SizedBox(height: 5),
-                                // Other widgets if needed
+
                               ],
                             ),
                           SizedBox(height: 5,),
@@ -317,8 +343,8 @@ class _JioScreenState extends State<JioScreen> {
                                         Center(
 
                                           child: Padding(
-                                            padding: const EdgeInsets.only(left: 8,top: 4,bottom: 8,),
-                                            child: Icon(Icons.search,size: 18,),
+                                            padding: const EdgeInsets.only(left: 7,top: 4,bottom: 8,),
+                                            child: Icon(Icons.search,size: 18,color: Colors.white,),
                                           ),
                                         ),
 
@@ -336,7 +362,7 @@ class _JioScreenState extends State<JioScreen> {
                           Container(
                             height: 45,
                             width: 400,
-                            //margin: EdgeInsets.only(left: 5,right: 5, ),
+                            margin: EdgeInsets.only(top: 15 ),
                             child: ElevatedButton(
                               onPressed: () {
                                 // Navigator.pop(context);
@@ -373,6 +399,7 @@ class _JioScreenState extends State<JioScreen> {
               // color: Colors.amber,
               width: 230,
               height: 80,
+              margin: EdgeInsets.only(top: 5),
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(40),
                 color: Colors.white,

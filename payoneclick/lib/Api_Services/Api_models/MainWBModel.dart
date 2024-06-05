@@ -3,6 +3,8 @@ class MainWBModel {
   String? _status;
   Data? _data;
 
+
+
   MainWBModel({String? statuscode, String? status, Data? data}) {
     if (statuscode != null) {
       this._statuscode = statuscode;

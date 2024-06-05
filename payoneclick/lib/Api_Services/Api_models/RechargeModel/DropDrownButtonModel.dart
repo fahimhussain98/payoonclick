@@ -1,9 +1,9 @@
 class DropDrownButtonModel {
   String? _statuscode;
   String? _status;
-  List<Data>? _data;
+  List<Data_DrownButtonModel>? _data;
 
-  DropDrownButtonModel({String? statuscode, String? status, List<Data>? data}) {
+  DropDrownButtonModel({String? statuscode, String? status, List<Data_DrownButtonModel>? data}) {
     if (statuscode != null) {
       this._statuscode = statuscode;
     }
@@ -19,16 +19,16 @@ class DropDrownButtonModel {
   set statuscode(String? statuscode) => _statuscode = statuscode;
   String? get status => _status;
   set status(String? status) => _status = status;
-  List<Data>? get data => _data;
-  set data(List<Data>? data) => _data = data;
+  List<Data_DrownButtonModel>? get data => _data;
+  set data(List<Data_DrownButtonModel>? data) => _data = data;
 
   DropDrownButtonModel.fromJson(Map<String, dynamic> json) {
     _statuscode = json['statuscode'];
     _status = json['status'];
     if (json['data'] != null) {
-      _data = <Data>[];
+      _data = <Data_DrownButtonModel>[];
       json['data'].forEach((v) {
-        _data!.add(new Data.fromJson(v));
+        _data!.add(new Data_DrownButtonModel.fromJson(v));
       });
     }
   }
@@ -45,7 +45,7 @@ class DropDrownButtonModel {
 }
 // lib/models/data.dart
 
-class Data {
+class Data_DrownButtonModel {
   int? _iD;
   String? _operatorName;
   double? _minAmount;
@@ -121,7 +121,7 @@ class Data {
   String? get paramName => _paramName;
   set paramName(String? paramName) => _paramName = paramName;
 
-  Data.fromJson(Map<String, dynamic> json) {
+  Data_DrownButtonModel.fromJson(Map<String, dynamic> json) {
     _iD = json['ID'];
     _operatorName = json['OperatorName'];
     _minAmount = (json['MinAmount'] as num?)?.toDouble();
