@@ -69,7 +69,8 @@ class _ReportScreenState extends State<ReportScreen> {
       ),
       drawer: MyCustomDrawer(),
       body:  Stack(
-        children: [ Image.asset(
+        children: [
+          Image.asset(
           "image/ProfileWI.png",
           width: double.infinity,
           height: double.infinity,

@@ -34,6 +34,8 @@ class _JioScreenState extends State<JioScreen> {
   var dropdownValue;
   MainWBModel? MWBmodel;
   bool isLoading = true;
+  String? selectedOperatorImage;//this is for the Select Operator image ko JioIcon tk jekr jana hai
+
   ApiServices apiServices = ApiServices();
 
   @override
@@ -232,6 +234,9 @@ class _JioScreenState extends State<JioScreen> {
                               onChanged: (String? newValue) {
                                 setState(() {
                                   dropdownValue2 = newValue!;
+                                  selectedOperatorImage = operatorData
+                                      .firstWhere((operator) => operator.operatorName == newValue)
+                                      .oPImage;
                                 });
                               },
                               items: operatorData.map<DropdownMenuItem<String>>((Data_DrownButtonModel data) {
@@ -450,9 +455,19 @@ class _JioScreenState extends State<JioScreen> {
             alignment: Alignment.topCenter,
             child: Container(
               margin: EdgeInsets.only(top: 90),
+              decoration: BoxDecoration(
+                shape: BoxShape.circle,
+                color: Colors.amber,
+              ),
+             // color: Colors.amber,
               child: CircleAvatar(
                 backgroundColor: Colors.grey[50],
-                child: Image.asset("image/jioIcon.png",),
+                child: selectedOperatorImage != null
+                    ? Image.network(
+                  'http://login.payonclick.in$selectedOperatorImage',
+                  fit: BoxFit.cover,
+                )
+                    : Image.asset("image/walletIconIn.png"),
                 radius: 50,
               ),
 

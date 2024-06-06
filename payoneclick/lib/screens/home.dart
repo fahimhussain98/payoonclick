@@ -12,13 +12,15 @@ import 'package:payoneclick/screens/JioScreen.dart';
 class home extends StatefulWidget {
  // final String? WalletBalance;
   final LoginModel? loginModelData; // ye data login -> home -> jioScreen
-
   // const home({super.key,
   //   //this.WalletBalance,
   //   this.loginModelData});
+
+  
+
+
   const home({Key? key,
      this.loginModelData // ye data login -> home -> jioScreen
-
   }) : super(key: key);
 
 
@@ -27,6 +29,8 @@ class home extends StatefulWidget {
 }
 
 class _homeState extends State<home> {
+  
+  
   LoginModel loginModel = LoginModel();
   late String userID; //dynamically send to the Api Servies to the Operatornmae
 

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:payoneclick/Api_Services/Api_models/Login_Model.dart';
+import 'package:payoneclick/ReportScreen/RechargeReportScreen.dart';
 import 'package:payoneclick/screens/Loginpage.dart';
 import 'package:payoneclick/screens/testingPage.dart';
 import 'package:payoneclick/splashScreen/splashScreen.dart';
@@ -31,7 +32,7 @@ class MyApp extends StatelessWidget {
         useMaterial3: true,
       ),
      // home: HomePage(),
-      home: Loginpage(), //correct
+    //  home: Loginpage(), //correct
      //   home:home()
       // home: operatorscreen(),
       //home: operatorscreen2(),
@@ -44,7 +45,9 @@ class MyApp extends StatelessWidget {
       //home: ProfilleScreen(),
       //home: SuppordScreen(),
       //home:ReportScreen(),
-     // home: Testingpage(showStateTextField: true,),
+        home: RechargeReportScreen(),
+     // home: Testingpage()
+      // showStateTextField: true,),
     );
   }
 }
