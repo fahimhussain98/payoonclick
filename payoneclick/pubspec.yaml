@@ -19,6 +19,8 @@ dependencies:
   dio: ^4.0.4
   cached_network_image: ^3.2.0
   table_calendar: ^3.0.8
+  html: ^0.15.0
+  intl: ^0.17.0
 
 dev_dependencies:
   flutter_test:

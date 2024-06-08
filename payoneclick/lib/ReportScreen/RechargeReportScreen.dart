@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:payoneclick/Api_Services/Api_models/RechargeModel/RechargeReportModel.dart';
 import 'package:table_calendar/table_calendar.dart';
 
 class RechargeReportScreen extends StatefulWidget {
@@ -10,10 +11,12 @@ class RechargeReportScreen extends StatefulWidget {
 }
 
 class _RechargeReportScreenState extends State<RechargeReportScreen> {
+
+  //______________________calendar functoin_________________________
+
   DateTime _focusedDay = DateTime.now();
   DateTime? _fromDate;
   DateTime? _toDate;
-
   Future<void> _selectDate(BuildContext context, bool isFromDate) async {
     DateTime? tempPickedDate;
     final DateTime? pickedDate = await showDialog<DateTime>(
@@ -106,15 +109,13 @@ class _RechargeReportScreenState extends State<RechargeReportScreen> {
       });
     }
   }
-
   String _formatDate(DateTime? date) {
     if (date == null) return '';
     return '${date.year}-${date.month.toString().padLeft(2,'0')}-${date.day.toString().padLeft(2,'0')}';
   }
+  //______________________getRechargeReport_________________________
+  RechargeReportsModel rechargeReportsModel = RechargeReportsModel();
 
-
-
-  //_______________________________________________
 
   @override
   Widget build(BuildContext context) {
