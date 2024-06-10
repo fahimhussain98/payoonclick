@@ -1,16 +1,21 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:payoneclick/Api_Services/Api_Service.dart';
 import 'package:payoneclick/Drawer/MyCustomDrawer.dart';
+import 'package:payoneclick/ReportScreen/RechargeReportScreen.dart';
 
 class ReportScreen extends StatefulWidget {
-  const ReportScreen({super.key});
+  final String userID;
+  const ReportScreen({super.key, required this.userID});
 
   @override
   State<ReportScreen> createState() => _ReportScreenState();
 }
 
 class _ReportScreenState extends State<ReportScreen> {
+  final ApiServices apiServices = ApiServices();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -96,30 +101,35 @@ class _ReportScreenState extends State<ReportScreen> {
                     ),
                   ],
                 ),
-                child: Row(
-
-                  children: [
-                    Stack(children:[
-                    Image.asset("image/CircleIcon.png"),
-                      Center(
-
-                          child: Padding(
-                            padding: const EdgeInsets.only(left: 15),
-                            child: Image.asset("image/mobileRecharge.png",color: Colors.white,height: 30,width: 30,),
-                          ))
-                    ]),
-
-                    Padding(
-                      padding: const EdgeInsets.only(left: 20),
-                      child: Text("Recharge Reports",style: TextStyle(fontSize: 16,fontWeight: FontWeight.normal),),
-                    ),
-                    Spacer(),
-                    Padding(
-                      padding: const EdgeInsets.only(right: 15),
-                      child: Icon(Icons.keyboard_arrow_right_sharp),
-                    ),
-
-                  ],
+                child: InkWell(
+                  onTap: (){
+                    print("yan pe hai apki userID ::: ${widget.userID}");
+                    Navigator.push(context, MaterialPageRoute(builder: (context) =>RechargeReportScreen(userID: widget.userID)));
+                  },
+                  child: Row(
+                  
+                    children: [
+                      Stack(children:[
+                      Image.asset("image/CircleIcon.png"),
+                        Center(
+                  
+                            child: Padding(
+                              padding: const EdgeInsets.only(left: 15),
+                              child: Image.asset("image/mobileRecharge.png",color: Colors.white,height: 30,width: 30,),
+                            ))
+                      ]),
+                      Padding(
+                        padding: const EdgeInsets.only(left: 20),
+                        child: Text("Recharge Reports",style: TextStyle(fontSize: 16,fontWeight: FontWeight.normal),),
+                      ),
+                      Spacer(),
+                      Padding(
+                        padding: const EdgeInsets.only(right: 15),
+                        child: Icon(Icons.keyboard_arrow_right_sharp),
+                      ),
+                  
+                    ],
+                  ),
                 ),
               ),
               SizedBox(height: 10,),

@@ -3,6 +3,9 @@ import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:payoneclick/Api_Services/Api_Service.dart';
 import 'package:html/parser.dart' show parse;
+import 'package:payoneclick/Slips/RechargeTransactionSlip.dart';
+import 'package:share/share.dart';
+
 
 
 class Testingpage2 extends StatefulWidget {
@@ -27,6 +30,8 @@ class _Testingpage2State extends State<Testingpage2> {
   List<String>sTATUS = [];
   List<String> liveID=[];
   List<double> closingBalance =[];
+  List<String> ownerName =[];
+  List<String> userType = [];
 
 
   @override
@@ -38,7 +43,7 @@ class _Testingpage2State extends State<Testingpage2> {
   // Function to fetch data
   Future<void> fetchData({DateTime? fromDate, DateTime? toDate}) async {
     // Replace these values with your actual userID and serviceID
-    String userID = 'AhCtz8JqpO7nwjOyHlLlUVunsKFHQMXB';
+    String userID = 'AhCtz8JqpO4FdfEQaakgb1unsKFHQMXB';
     String serviceID = '1';
 
     // Call your API service method to get recharge report
@@ -79,6 +84,9 @@ class _Testingpage2State extends State<Testingpage2> {
             sTATUS.add(report.sTATUS!);
             liveID.add(report.liveID!);
             closingBalance.add(report.closingBalance!);
+            ownerName.add(report.ownerName!);
+            userType.add(report.userType!);
+
           }
         });
       });
@@ -88,6 +96,7 @@ class _Testingpage2State extends State<Testingpage2> {
     print('number length: ${number.length}');
     print('payableAmount length: ${payableAmount.length}');
     print('payableAmount length: ${amount.length}');
+   // print("status : ${sTATUS}");
 
   }
 
@@ -192,7 +201,53 @@ class _Testingpage2State extends State<Testingpage2> {
     if (date == null) return '';
     return '${date.year}-${date.month.toString().padLeft(2,'0')}-${date.day.toString().padLeft(2,'0')}';
   }
-  //______________filter base on the date_________________________
+  //______________change the color if sTATUS Failed_________________________
+  String parseStatus(String htmlStatus) {
+    final RegExp regex = RegExp(r"color:(.*?)>(.*?)<\/span>");
+    final match = regex.firstMatch(htmlStatus);
+    if (match != null) {
+      return match.group(2)!.trim();
+    }
+    return htmlStatus;
+  }
+
+  Color getStatusColor(String status) {
+    final parsedStatus = parseStatus(status);
+    // print("Parsed Status for color: $parsedStatus");
+    return parsedStatus == "FAILED" ? Colors.red : Color.fromRGBO(2, 172, 10, 1);
+  }
+
+  //____________share Containt link but not require yet_______
+  // void _shareContent(String txnID) {
+  //   final transactionLink = "https://www.example.com/transaction/$txnID";
+  //   Share.share(transactionLink);
+  // }
+  //_______________share data next screen__________
+  // void _navigateToTransactionSlip() {
+  //   Navigator.push(
+  //     context,
+  //     MaterialPageRoute(
+  //       builder: (context) => RechargeTransactionSlip(
+  //        //  txnID: txnID,
+  //         // number: number,
+  //         // payableAmount: payableAmount,
+  //        //  amount: amount,
+  //         // openingBalance: openingBalance,
+  //         // commission: commission,
+  //         // txnDate: txnDate,
+  //         // operatorName: operatorName,
+  //         // oPImage: oPImage,
+  //         // sTATUS: sTATUS,
+  //         // liveID: liveID,
+  //         // closingBalance: closingBalance,
+  //         // userType: userType,
+  //         // ownerName: ownerName,
+  //       ),
+  //     ),
+  //   );
+  // }
+
+
 
 
 
@@ -410,7 +465,8 @@ class _Testingpage2State extends State<Testingpage2> {
                                       height: 190,
                                       width: double.infinity,
                                       decoration: BoxDecoration(
-                                        color: Color.fromRGBO(2, 172, 10, 1),
+                                       // color: Color.fromRGBO(2, 172, 10, 1),
+                                       color: getStatusColor(sTATUS[index]),
                                         borderRadius: BorderRadius.circular(9),
                                       ),
                                       child: Padding(
@@ -473,11 +529,39 @@ class _Testingpage2State extends State<Testingpage2> {
                                               width: double.infinity,
                                               margin: EdgeInsets.only(left: 5),
                                               height: 25,
-                                              color: Colors.transparent,
-                                              child: Icon(
-                                                Icons.share,
-                                                size: 25,
-                                                color: Colors.white,
+                                              color: getStatusColor(sTATUS[index]),
+                                              child: Row(
+                                                children: [
+
+                                                  _buildStatusText(sTATUS[index]),
+                                                  Spacer(),
+                                                  IconButton(
+                                                    icon: Icon(
+                                                      Icons.share,
+                                                      size: 25,
+                                                      color: Colors.white,
+                                                    ),
+                                                    // onPressed: () => _shareContent(txnIDs[index]),
+                                                    onPressed: (){
+                                                      Navigator.push(context, MaterialPageRoute(builder: (context) => RechargeTransactionSlip(
+                                                          txnID: txnIDs[index], // Pass the specific data you want
+                                                          amount: amount[index],
+                                                          liveID: liveID[index],
+                                                          number:number[index],
+                                                          openingBalance: openingBalance[index],
+                                                          closingBalance: closingBalance[index],
+                                                          operatorName: operatorName[index],
+                                                          status: sTATUS[index],
+                                                          txnDate: txnDate[index],
+                                                          ownerName: ownerName[index],
+                                                          userType: userType[index],
+
+
+                                                      )
+                                                      ));
+                                                    },
+                                                  ),
+                                                ],
                                               ),
                                             ),
                                           ],
@@ -592,13 +676,13 @@ class _Testingpage2State extends State<Testingpage2> {
     // Parse the HTML content to extract text and color
     var document = parse(statusHtml);
     var statusText = document.body!.text;
-    var statusColor = Colors.green;
+    var statusColor = Colors.white;
 
     // Determine color based on the status text
     if (statusHtml.contains("color:green")) {
       statusColor = Colors.green;
     } else if (statusHtml.contains("color:RED")) {
-      statusColor = Colors.red;
+      statusColor = Colors.white;
     }
 
     return Text(
@@ -625,4 +709,5 @@ class _Testingpage2State extends State<Testingpage2> {
       ],
     );
   }
+
 }

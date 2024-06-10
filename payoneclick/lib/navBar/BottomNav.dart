@@ -36,7 +36,7 @@ class _NavBarState extends State<NavBar> {
       home (loginModelData: widget.loginModelData),// ye data  login-> bottomNavBar -> home -> jioScreen
       walletScreen(userID: userID),
       ProfilleScreen(loginModelData: widget.loginModelData),
-      ReportScreen(),
+      ReportScreen(userID: userID),//  ReportScreen pe hai userID fir use hum => RechargeReportScreen pe gya
       SuppordScreen(),
     ];
     return Scaffold(
