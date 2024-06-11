@@ -45,46 +45,46 @@ class _RechargeTransactionSlipState extends State<RechargeTransactionSlip> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Screenshot(
-        controller: screenshotController,
-        child: Stack(
-          children: [
-            Image.asset(
-              "image/ProfileWI.png",
-              width: double.infinity,
-              height: double.infinity,
-              fit: BoxFit.cover,
-            ),
-            Scaffold(
-              backgroundColor: Colors.transparent, // Ensure the scaffold background is transparent
-              appBar: AppBar(
-                backgroundColor: Colors.transparent,
-                elevation: 0, // Remove shadow
-                leading: Builder(
-                  builder: (BuildContext context) {
-                    return IconButton(
-                      icon: Stack(
-                        children: [
-                          Image.asset('image/circleForDrawer.png'),
-                          Padding(
-                            padding: const EdgeInsets.only(left: 7, top: 5),
-                            child: Icon(
-                              Icons.arrow_back,
-                              color: Colors.white,
-                              size: 25,
-                            ), // Change to back arrow icon
-                          ),
-                        ],
-                      ),
-                      onPressed: () {
-                           Navigator.pop(context); // Navigate back to the previous screen
-                      },
-                    );
-                  },
-                ),
-        
+      body: Stack(
+        children: [
+          Image.asset(
+            "image/ProfileWI.png",
+            width: double.infinity,
+            height: double.infinity,
+            fit: BoxFit.cover,
+          ),
+          Scaffold(
+            backgroundColor: Colors.transparent, // Ensure the scaffold background is transparent
+            appBar: AppBar(
+              backgroundColor: Colors.transparent,
+              elevation: 0, // Remove shadow
+              leading: Builder(
+                builder: (BuildContext context) {
+                  return IconButton(
+                    icon: Stack(
+                      children: [
+                        Image.asset('image/circleForDrawer.png'),
+                        Padding(
+                          padding: const EdgeInsets.only(left: 7, top: 5),
+                          child: Icon(
+                            Icons.arrow_back,
+                            color: Colors.white,
+                            size: 25,
+                          ), // Change to back arrow icon
+                        ),
+                      ],
+                    ),
+                    onPressed: () {
+                         Navigator.pop(context); // Navigate back to the previous screen
+                    },
+                  );
+                },
               ),
-              body:Column(
+
+            ),
+            body:Screenshot(
+              controller: screenshotController,
+              child: Column(
                 children: [
                   Container(
                     height: 500,
@@ -215,8 +215,8 @@ class _RechargeTransactionSlipState extends State<RechargeTransactionSlip> {
                           height: 25, width: double.infinity,
                           margin: EdgeInsets.only(left: 15,right: 15),
                           color: Colors.white,
-                          child:                   _buildStatusText("${widget.status}"), // Use a helper method to style the status text
-        
+                          child:_buildStatusText("${widget.status}"), // Use a helper method to style the status text
+
                           // Row(
                           //   children: [
                           //     Text("Status",style: TextStyle(fontSize: 12,fontWeight: FontWeight.bold,),),
@@ -233,7 +233,7 @@ class _RechargeTransactionSlipState extends State<RechargeTransactionSlip> {
                           margin: EdgeInsets.only(left: 15,right: 15),
                           color: Colors.transparent,
                           child: _buildDateTimeText(widget.txnDate), // Use a hel
-        
+
                           // Row(
                           //   children: [
                           //     Text("Date",style: TextStyle(fontSize: 12,fontWeight: FontWeight.bold,),),
@@ -241,7 +241,7 @@ class _RechargeTransactionSlipState extends State<RechargeTransactionSlip> {
                           //     Text("${widget.txnDate}",style: TextStyle(fontSize: 12,fontWeight: FontWeight.bold),)
                           //   ],
                           // ),
-        
+
                         ),
                         // Container(
                         //   height: 25, width: double.infinity,
@@ -274,11 +274,11 @@ class _RechargeTransactionSlipState extends State<RechargeTransactionSlip> {
                             ],
                           ),
                         ),
-        
+
                       ],
                     ),
-        
-        
+
+
                   ),
                   //________out of the Big Box___________
                   Container(
@@ -292,7 +292,7 @@ class _RechargeTransactionSlipState extends State<RechargeTransactionSlip> {
                     height: 20,
                     width: double.infinity,
                     color: Colors.transparent,
-        
+
                         child: Row(
                           mainAxisAlignment:MainAxisAlignment.center,
                           children: [
@@ -306,9 +306,9 @@ class _RechargeTransactionSlipState extends State<RechargeTransactionSlip> {
                       height: 20,
                       width: double.infinity,
                       color: Colors.transparent,
-        
+
                       child:Center(child: Text("${widget.number}"))
-        
+
                   ),
                   Container(
                       height: 70,
@@ -334,7 +334,7 @@ class _RechargeTransactionSlipState extends State<RechargeTransactionSlip> {
                             ),),
                          ),
                        Spacer(),
-        
+
                         Container(
                           height:40,
                           width: 160,
@@ -370,8 +370,8 @@ class _RechargeTransactionSlipState extends State<RechargeTransactionSlip> {
                 ],
               ),
             ),
-          ],
-        ),
+          ),
+        ],
       ),
     );
   }

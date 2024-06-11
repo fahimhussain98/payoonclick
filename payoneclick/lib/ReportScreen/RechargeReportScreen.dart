@@ -110,7 +110,6 @@ class _RechargeReportScreenState extends State<RechargeReportScreen> {
       context: context,
       builder: (BuildContext context) {
         print("from Date yan hai ${_fromDate}");
-
         print("T000 Date yan hai ${_toDate}");
         return Center(
           child: Container(
@@ -137,23 +136,21 @@ class _RechargeReportScreenState extends State<RechargeReportScreen> {
                       child: Theme(
                         data: ThemeData(
                           colorScheme: ColorScheme.dark(
-                            primary: Colors.deepPurple, // Header background color __fix__
+                            primary: Colors.deepPurple, // Header background color
                             background: Colors.white,
-
                             onPrimary: Colors.grey, // Header text color
-                            onSurface: Colors.black, // Calendar text color ____fix__
+                            onSurface: Colors.black, // Calendar text color
                           ),
                           textButtonTheme: TextButtonThemeData(
                             style: TextButton.styleFrom(
-                              foregroundColor: Colors.blue,
-                              // Button text color
+                              foregroundColor: Colors.blue, // Button text color
                             ),
                           ),
                         ),
                         child: CalendarDatePicker(
                           initialDate: _focusedDay,
                           firstDate: DateTime(2010),
-                          lastDate: DateTime(2030),
+                          lastDate: DateTime.now(),
                           onDateChanged: (DateTime date) {
                             tempPickedDate = date;
                           },
@@ -196,9 +193,10 @@ class _RechargeReportScreenState extends State<RechargeReportScreen> {
       });
     }
   }
+
   String _formatDate(DateTime? date) {
     if (date == null) return '';
-    return '${date.year}-${date.month.toString().padLeft(2,'0')}-${date.day.toString().padLeft(2,'0')}';
+    return '${date.year}-${date.month.toString().padLeft(2, '0')}-${date.day.toString().padLeft(2, '0')}';
   }
   //______________change the color if sTATUS Failed_________________________
   String parseStatus(String htmlStatus) {

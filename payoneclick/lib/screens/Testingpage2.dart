@@ -43,7 +43,7 @@ class _Testingpage2State extends State<Testingpage2> {
   // Function to fetch data
   Future<void> fetchData({DateTime? fromDate, DateTime? toDate}) async {
     // Replace these values with your actual userID and serviceID
-    String userID = 'AhCtz8JqpO4FdfEQaakgb1unsKFHQMXB';
+    String userID = 'AhCtz8JqpO5VVe5m7ZJjTlunsKFHQMXB';
     String serviceID = '1';
 
     // Call your API service method to get recharge report
@@ -111,7 +111,6 @@ class _Testingpage2State extends State<Testingpage2> {
       context: context,
       builder: (BuildContext context) {
         print("from Date yan hai ${_fromDate}");
-
         print("T000 Date yan hai ${_toDate}");
         return Center(
           child: Container(
@@ -138,23 +137,21 @@ class _Testingpage2State extends State<Testingpage2> {
                       child: Theme(
                         data: ThemeData(
                           colorScheme: ColorScheme.dark(
-                            primary: Colors.deepPurple, // Header background color __fix__
+                            primary: Colors.deepPurple, // Header background color
                             background: Colors.white,
-
                             onPrimary: Colors.grey, // Header text color
-                            onSurface: Colors.black, // Calendar text color ____fix__
+                            onSurface: Colors.black, // Calendar text color
                           ),
                           textButtonTheme: TextButtonThemeData(
                             style: TextButton.styleFrom(
-                              foregroundColor: Colors.blue,
-                              // Button text color
+                              foregroundColor: Colors.blue, // Button text color
                             ),
                           ),
                         ),
                         child: CalendarDatePicker(
                           initialDate: _focusedDay,
                           firstDate: DateTime(2010),
-                          lastDate: DateTime(2030),
+                          lastDate: DateTime.now(),
                           onDateChanged: (DateTime date) {
                             tempPickedDate = date;
                           },
@@ -197,9 +194,10 @@ class _Testingpage2State extends State<Testingpage2> {
       });
     }
   }
+
   String _formatDate(DateTime? date) {
     if (date == null) return '';
-    return '${date.year}-${date.month.toString().padLeft(2,'0')}-${date.day.toString().padLeft(2,'0')}';
+    return '${date.year}-${date.month.toString().padLeft(2, '0')}-${date.day.toString().padLeft(2, '0')}';
   }
   //______________change the color if sTATUS Failed_________________________
   String parseStatus(String htmlStatus) {
@@ -335,7 +333,7 @@ class _Testingpage2State extends State<Testingpage2> {
                               children: [
                                 Text("From Date", style: TextStyle(color: Colors.grey, fontSize: 13)),
                                 Text(
-                                  _formatDate(_fromDate) == '' ? "01-10-2023" : _formatDate(_fromDate),
+                                  _formatDate(_fromDate) == '' ? "2024-04-10" : _formatDate(_fromDate),
                                   style: TextStyle(color: Colors.indigoAccent, fontSize: 13, fontWeight: FontWeight.bold),
                                 ),
                               ],
@@ -373,7 +371,7 @@ class _Testingpage2State extends State<Testingpage2> {
                               children: [
                                 Text("To Date", style: TextStyle(color: Colors.grey, fontSize: 13)),
                                 Text(
-                                  _formatDate(_toDate) == '' ? "06-06-2024" : _formatDate(_toDate),
+                                  _formatDate(_toDate) == '' ? "2024-06-06" : _formatDate(_toDate),
                                   style: TextStyle(color: Colors.indigoAccent, fontSize: 13, fontWeight: FontWeight.bold),
                                 ),
                               ],
