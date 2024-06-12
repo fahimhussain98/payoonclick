@@ -28,7 +28,7 @@ class MyApp extends StatelessWidget {
         useMaterial3: true,
       ),
      // home: HomePage(),
-     // home: Loginpage(), //correct
+      home: Loginpage(), //correct
      //   home:home()
       // home: operatorscreen(),
       //home: operatorscreen2(),
@@ -44,7 +44,7 @@ class MyApp extends StatelessWidget {
       //  home: RechargeReportScreen(),
       //  home:RechargeTransactionSlip()
      //   home: Testingpage(),
-      home: Testingpage2(),
+    //  home: Testingpage2(),
 
       // showStateTextField: true,),
     );

@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:payoneclick/screens/Loginpage.dart';
 
 class MyCustomDrawer extends StatelessWidget {
   @override
@@ -156,23 +157,28 @@ class MyCustomDrawer extends StatelessWidget {
 
 
                                     ]),
-                                Stack(
-                                    children: [
-                                      Padding(
-                                        padding: const EdgeInsets.only(left: 0,top:5,right: 240,),
-                                        child: Image.asset("image/CircleIcon.png",height: 50,width: 50,),
-                                      ),
-                                      Padding(
-                                        padding: const EdgeInsets.only(left: 10,top: 15),
-                                        child: Image.asset("image/logoutIcon.png",height: 30,width: 30,),
-                                      ),
-                                      Padding(
-                                        padding: const EdgeInsets.only(left: 69,top: 25,),
-                                        child: Text("Logout",style: TextStyle(fontSize: 16,fontWeight: FontWeight.bold),),
-                                      )
-
-
-                                    ]),
+                                InkWell(
+                                  onTap: (){
+                                    _logout(context);
+                                  },
+                                  child: Stack(
+                                      children: [
+                                        Padding(
+                                          padding: const EdgeInsets.only(left: 0,top:5,right: 240,),
+                                          child: Image.asset("image/CircleIcon.png",height: 50,width: 50,),
+                                        ),
+                                        Padding(
+                                          padding: const EdgeInsets.only(left: 10,top: 15),
+                                          child: Image.asset("image/logoutIcon.png",height: 30,width: 30,),
+                                        ),
+                                        Padding(
+                                          padding: const EdgeInsets.only(left: 69,top: 25,),
+                                          child: Text("Logout",style: TextStyle(fontSize: 16,fontWeight: FontWeight.bold),),
+                                        )
+                                  
+                                  
+                                      ]),
+                                ),
 
 
 
@@ -216,6 +222,14 @@ class MyCustomDrawer extends StatelessWidget {
         ),
       ),
 
+    );
+  }
+//______logout methode _______
+  void _logout(BuildContext context) {
+    Navigator.of(context).pushReplacement(
+      MaterialPageRoute(
+        builder: (context) => Loginpage(),
+      ),
     );
   }
 }
