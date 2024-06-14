@@ -306,7 +306,7 @@ class _RechargeReportScreenState extends State<RechargeReportScreen> {
                                 children: [
                                   Text("From Date", style: TextStyle(color: Colors.grey, fontSize: 13)),
                                   Text(
-                                    _formatDate(_fromDate) == '' ? "01-10-2023" : _formatDate(_fromDate),
+                                    _formatDate(_fromDate) == '' ? "2024-05-01" : _formatDate(_fromDate),
                                     style: TextStyle(color: Colors.indigoAccent, fontSize: 13, fontWeight: FontWeight.bold),
                                   ),
                                 ],
@@ -344,7 +344,7 @@ class _RechargeReportScreenState extends State<RechargeReportScreen> {
                                 children: [
                                   Text("To Date", style: TextStyle(color: Colors.grey, fontSize: 13)),
                                   Text(
-                                    _formatDate(_toDate) == '' ? "06-06-2024" : _formatDate(_toDate),
+                                    _formatDate(_toDate) == '' ? "2024-06-06" : _formatDate(_toDate),
                                     style: TextStyle(color: Colors.indigoAccent, fontSize: 13, fontWeight: FontWeight.bold),
                                   ),
                                 ],

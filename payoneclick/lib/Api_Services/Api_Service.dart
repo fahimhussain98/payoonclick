@@ -77,6 +77,7 @@ import 'dart:ui';
 import 'package:flutter/cupertino.dart';
 import 'package:http/http.dart' as http;
 import 'package:payoneclick/Api_Services/Api_models/AePS_WB_Model.dart';
+import 'package:payoneclick/Api_Services/Api_models/BrowsePlan%20Model/BrowsePlanModel.dart';
 import 'dart:convert';
 
 import 'package:payoneclick/Api_Services/Api_models/Login_Model.dart';
@@ -233,7 +234,7 @@ class ApiServices {
     return null;
   }
 
-  //_____________________
+  //_________________Get Recharge Report in REPORT Screen_____________________
   Future<RechargeReportsModel?> getRechargeReport(String userID, String serviceID) async {
     try {
       var url = Uri.parse("http://api.payonclick.in/Vr1.0/74536/DJKIJF09320923JSDFOJDFLMSDS/KVLKMS09232309283KJSDJLWLEEJ203/api/RechargeReport");
@@ -277,6 +278,51 @@ class ApiServices {
     }
     return null;
   }
+
+//_________________home => Mobile Recharge Screen_____________________
+  Future<BrowsePlanModel?> getBrowsePlan(String userID, String operatorName, String circle) async {
+    try {
+      var url = Uri.parse("http://api.payonclick.in/Vr1.0/74536/DJKIJF09320923JSDFOJDFLMSDS/KVLKMS09232309283KJSDJLWLEEJ203/api/MplanMobileSimplePlan");
+      final headers = {
+        'Authorization': 'Basic ${base64Encode(utf8.encode('webtech#\$%^solution\$\$&&@@&^&july2k21:basic%%##@&&auth&#&#&#&@@#&pasWtS2021'))}',
+        'Content-Type': 'application/json',
+      };
+      final body = jsonEncode({
+        "userID": userID,
+        "tokenKey": "1234",
+        "deviceInfo": "1234",
+        "operatorName": operatorName,
+        "circle": circle,
+      });
+
+      var response = await http.post(url, headers: headers, body: body);
+
+      if (response.statusCode == 200) {
+        var jsonResponse = jsonDecode(response.body);
+
+        // Debugging: Print the type and content of jsonResponse
+        print('jsonResponse type: ${jsonResponse.runtimeType}');
+        print('jsonResponse: $jsonResponse');
+
+        if (jsonResponse is Map<String, dynamic> && jsonResponse['statuscode'] == 'TXN') {
+          // Ensure `data` is decoded if necessary
+          if (jsonResponse['data'] is String) {
+            jsonResponse['data'] = jsonDecode(jsonResponse['data']);
+          }
+          return BrowsePlanModel.fromJson(jsonResponse);
+        } else {
+          print('Error message getBrowsePlan: $jsonResponse');
+        }
+      } else {
+        print('Failed to fetch getBrowsePlan: ${response.statusCode}');
+        print('Response body getBrowsePlan: ${response.body}');
+      }
+    } catch (e) {
+      print('Error getBrowsePlan: $e');
+    }
+    return null;
+  }
+
 
 
 

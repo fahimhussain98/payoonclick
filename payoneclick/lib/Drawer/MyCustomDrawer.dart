@@ -65,7 +65,7 @@ class MyCustomDrawer extends StatelessWidget {
                                           child: Image.asset("image/homeIcon.png",height: 40,width: 40,),
                                         ),
                                         Padding(padding: const EdgeInsets.only(left: 10,top: 10,),
-                                          child: Text("Home",style: TextStyle(fontSize: 16),),
+                                          child: Text("Home",style: TextStyle(fontSize: 13),),
                                         )
                                       ]),
 
@@ -81,7 +81,7 @@ class MyCustomDrawer extends StatelessWidget {
                                       child: Image.asset("image/profileIcon.png",height: 30,width: 30,),
                                     )],),
                                   Padding(padding: const EdgeInsets.only(left: 160,top: 10),
-                                    child: Text("Profile",style: TextStyle(fontSize: 16),),
+                                    child: Text("Profile",style: TextStyle(fontSize: 13),),
                                   )
 
                                 ]),

@@ -9,10 +9,13 @@ version: 1.0.0+1
 environment:
   sdk: ">=3.3.4 <4.0.0"
 
+
 dependencies:
   flutter:
     sdk: flutter
 
+
+  json_annotation: ^4.8.1
   cupertino_icons: ^1.0.6
   curved_labeled_navigation_bar: ^2.0.2
   http: ^0.13.4
@@ -27,9 +30,15 @@ dependencies:
   url_launcher: ^6.1.11
   flutter_phone_direct_caller: ^2.1.0
 
+
 dev_dependencies:
+  #this below is testing
+  build_runner: ^2.3.3
+  json_serializable: ^6.6.1
+  #this above is testing
   flutter_test:
     sdk: flutter
+
 
   # The "flutter_lints" package below contains a set of recommended lints to
   # encourage good coding practices. The lint set provided by the package is

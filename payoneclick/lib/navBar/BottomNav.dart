@@ -40,10 +40,10 @@ class _NavBarState extends State<NavBar> {
       SuppordScreen(),
     ];
     return Scaffold(
-     // backgroundColor: Colors.transparent,
+    //  backgroundColor: Colors.white,
       bottomNavigationBar: CurvedNavigationBar(
-        backgroundColor: Colors.transparent,
-
+        backgroundColor: Colors.white60,
+        animationCurve: Curves.elasticOut,
         color: Color(0xFF046DB5),
         height: 60,
         animationDuration: Duration(milliseconds: 30),
