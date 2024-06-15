@@ -1,10 +1,25 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:payoneclick/screens/Testingpage2.dart';
+import 'package:payoneclick/TabBar/threeG.dart';
+import 'package:payoneclick/TabBar/ComboOffer.dart';
+import 'package:payoneclick/TabBar/Roaming.dart';
+import 'package:payoneclick/TabBar/TopUp.dart';
+
 
 class MobileRechargeTabBar extends StatefulWidget {
   final String title;
-  const MobileRechargeTabBar({super.key, required this.title});
+  final String userID;
+  final String? selectedState;
+  final String? dropdownValue2; //this is hold the value of the circle
+
+  const MobileRechargeTabBar({
+    super.key,
+    required this.title,
+    required this.userID,
+    this.selectedState,
+    this.dropdownValue2,
+
+  });
 
   @override
   State<MobileRechargeTabBar> createState() => _MobileRechargeTabBarState();
@@ -12,24 +27,63 @@ class MobileRechargeTabBar extends StatefulWidget {
 
 class _MobileRechargeTabBarState extends State<MobileRechargeTabBar>with SingleTickerProviderStateMixin {
   late TabController _controller;
+  late List<Widget> tabBarViews; // Declare as late initialization variable
 
-
-  List<Widget> tabBarViews = [
-    Testingpage2(),
-    Text("this is second"),
-    Text("this is third"),
-    Text("this is fourth"),
-
-  ];
   @override
   void initState() {
-
     super.initState();
-    _controller = TabController(length: tabBarViews.length, vsync: this);
-    _controller.addListener(() {
-      print(_controller.index);
-    });
+    _controller = TabController(length: 4, vsync: this);
+    tabBarViews = [
+      TopUp(
+        userID: widget.userID,
+        selectedState: widget.selectedState,
+        dropdownValue2: widget.dropdownValue2,
+      ),
+      threeG(
+        userID: widget.userID,
+        selectedState: widget.selectedState,
+        dropdownValue2: widget.dropdownValue2,
+      ),
+      Roaming(
+        userID: widget.userID,
+        selectedState: widget.selectedState,
+        dropdownValue2: widget.dropdownValue2,
+      ),
+      ComboOffer(
+        userID: widget.userID,
+        selectedState: widget.selectedState,
+        dropdownValue2: widget.dropdownValue2,
+      ),
+    ];
   }
+
+  @override
+  void dispose() {
+    _controller.dispose();
+    super.dispose();
+  }
+
+
+  // List<Widget> tabBarViews = [
+  //   TopUp(
+  //     userID: widget.userID,
+  //     selectedState: widget.selectedState,
+  //     dropdownValue2: widget.dropdownValue2,
+  //   ),
+  //   threeG(),
+  //   Roaming(),
+  //   ComboOffer(),
+  //
+  // ];
+  // @override
+  // void initState() {
+  //
+  //   super.initState();
+  //   _controller = TabController(length: tabBarViews.length, vsync: this);
+  //   _controller.addListener(() {
+  //     print(_controller.index);
+  //   });
+  // }
   @override
   Widget build(BuildContext context) {
     return DefaultTabController(

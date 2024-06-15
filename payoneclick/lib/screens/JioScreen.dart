@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:payoneclick/Api_Services/Api_Service.dart';
 import 'package:payoneclick/Api_Services/Api_models/MainWBModel.dart';
 import 'package:payoneclick/Api_Services/Api_models/RechargeModel/DropDrownButtonModel.dart';
+import 'package:payoneclick/TabBar/tabBar.dart';
 
 class JioScreen extends StatefulWidget {
   final String userID;
@@ -46,7 +47,7 @@ class _JioScreenState extends State<JioScreen> {
 
   }
 
-  String? _selectedState;
+  String? selectedState;//
 
   final List<String> _states = [
     "Assam",
@@ -103,7 +104,7 @@ class _JioScreenState extends State<JioScreen> {
 
   @override
   Widget build(BuildContext context) {
-    print(_selectedState);
+    print(selectedState);
     print(dropdownValue2);
     print(subscribeIDcontroller);
 
@@ -290,7 +291,7 @@ class _JioScreenState extends State<JioScreen> {
                                     border: Border.all(color: Colors.grey, width: 1),
                                   ),
                                   child: DropdownButtonFormField<String>(
-                                    value: _selectedState,
+                                    value: selectedState,
                                     decoration: InputDecoration(
                                       contentPadding: EdgeInsets.symmetric(vertical: 13.0, horizontal: 10.0),
                                       border: InputBorder.none,
@@ -303,7 +304,7 @@ class _JioScreenState extends State<JioScreen> {
                                     }).toList(),
                                     onChanged: (String? newValue) {
                                       setState(() {
-                                        _selectedState = newValue;
+                                        selectedState = newValue;
                                       });
                                     },
                                     hint: Text("Select a State",style: TextStyle(fontWeight: FontWeight.normal,fontSize: 15,color: Colors.grey),),
@@ -354,8 +355,25 @@ class _JioScreenState extends State<JioScreen> {
                                         ),
 
                                       ]),
-                                  Text("Browse Plan",style: TextStyle(fontSize: 13,)),
+                                  InkWell(
+                                    onTap: () {
+                                      Navigator.push(
+                                          context,
+                                          MaterialPageRoute(builder: (context) =>
+                                              MobileRechargeTabBar(
+                                                  title: "Your Plan",
+                                                userID: widget.userID,
+                                                selectedState: selectedState,
+                                                dropdownValue2: dropdownValue2,
+                                                //   userID: userID,
+                                                // dropdownValue: dropdownValue2, //this is hold the value Operator
+                                                // selectedState: selectedState, //this is hold the circle
+
+                                              ) ));
+                                    },
+                                      child: Text("Browse Plan",style: TextStyle(fontSize: 13,))),
                                   Spacer(),
+
                                   Text("My plains ",style: TextStyle(fontSize: 13,color: Colors.indigo),),
                                   Image.asset("image/ACE.png"),
 

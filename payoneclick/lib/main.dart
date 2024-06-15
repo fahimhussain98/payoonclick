@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:payoneclick/Api_Services/Api_models/Login_Model.dart';
+import 'package:payoneclick/TabBar/TopUp.dart';
 import 'package:payoneclick/TabBar/tabBar.dart';
 
 import 'package:payoneclick/screens/Loginpage.dart';
@@ -29,7 +30,7 @@ class MyApp extends StatelessWidget {
         useMaterial3: true,
       ),
      // home: HomePage(),
-    //  home: Loginpage(), //correct
+      home: Loginpage(), //correct
      //   home:home()
       // home: operatorscreen(),
       //home: operatorscreen2(),
@@ -49,7 +50,8 @@ class MyApp extends StatelessWidget {
 
 
       // showStateTextField: true,),
-      home: MobileRechargeTabBar(title: "Your Plans",),
+    //  home: MobileRechargeTabBar(title: "Your Plans",),
+    //  home: TopUp(),
     );
   }
 }

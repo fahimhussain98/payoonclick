@@ -28,16 +28,18 @@ import 'package:json_annotation/json_annotation.dart';
 
 part 'BrowsePlanModel.g.dart';
 
+
+
 @JsonSerializable()
 class BrowsePlanModel {
   final String statuscode;
   final String status;
-  final InnerData data;
+  final InnerData? data;
 
   BrowsePlanModel({
     required this.statuscode,
     required this.status,
-    required this.data,
+     this.data,
   });
 
   factory BrowsePlanModel.fromJson(Map<String, dynamic> json) => _$BrowsePlanModelFromJson(json);
@@ -46,14 +48,14 @@ class BrowsePlanModel {
 
 @JsonSerializable()
 class InnerData {
-  final Records records;
-  final int status;
-  final double time;
+  final Records? records;//
+  final int? status;
+  final double? time;
 
   InnerData({
-    required this.records,
-    required this.status,
-    required this.time,
+     this.records,//
+     this.status,
+     this.time,
   });
 
   factory InnerData.fromJson(Map<String, dynamic> json) {
@@ -69,22 +71,25 @@ class InnerData {
 @JsonSerializable()
 class Records {
   @JsonKey(name: 'TOPUP')
-  final List<Plan> topup;
+  final List<Plan>? topup;
 
   @JsonKey(name: '3G/4G')
-  final List<Plan> threeGFourG;
+  final List<Plan>? threeGFourG;
 
   @JsonKey(name: 'Romaing')
-  final List<Plan> romaing;
+  final List<Plan>? romaing;
 
   @JsonKey(name: 'COMBO')
-  final List<Plan> combo;
+  final List<Plan>? combo;
+
+  final String? msg; // Add this line to handle error messages
 
   Records({
-    required this.topup,
-    required this.threeGFourG,
-    required this.romaing,
-    required this.combo,
+     this.topup,
+     this.threeGFourG,
+     this.romaing,
+     this.combo,
+    this.msg,
   });
 
   factory Records.fromJson(Map<String, dynamic> json) => _$RecordsFromJson(json);

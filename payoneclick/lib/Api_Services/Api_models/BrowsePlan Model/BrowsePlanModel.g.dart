@@ -10,7 +10,9 @@ BrowsePlanModel _$BrowsePlanModelFromJson(Map<String, dynamic> json) =>
     BrowsePlanModel(
       statuscode: json['statuscode'] as String,
       status: json['status'] as String,
-      data: InnerData.fromJson(json['data'] as Map<String, dynamic>),
+      data: json['data'] == null
+          ? null
+          : InnerData.fromJson(json['data'] as Map<String, dynamic>),
     );
 
 Map<String, dynamic> _$BrowsePlanModelToJson(BrowsePlanModel instance) =>
@@ -21,9 +23,11 @@ Map<String, dynamic> _$BrowsePlanModelToJson(BrowsePlanModel instance) =>
     };
 
 InnerData _$InnerDataFromJson(Map<String, dynamic> json) => InnerData(
-      records: Records.fromJson(json['records'] as Map<String, dynamic>),
-      status: (json['status'] as num).toInt(),
-      time: (json['time'] as num).toDouble(),
+      records: json['records'] == null
+          ? null
+          : Records.fromJson(json['records'] as Map<String, dynamic>),
+      status: (json['status'] as num?)?.toInt(),
+      time: (json['time'] as num?)?.toDouble(),
     );
 
 Map<String, dynamic> _$InnerDataToJson(InnerData instance) => <String, dynamic>{
@@ -33,18 +37,19 @@ Map<String, dynamic> _$InnerDataToJson(InnerData instance) => <String, dynamic>{
     };
 
 Records _$RecordsFromJson(Map<String, dynamic> json) => Records(
-      topup: (json['TOPUP'] as List<dynamic>)
-          .map((e) => Plan.fromJson(e as Map<String, dynamic>))
+      topup: (json['TOPUP'] as List<dynamic>?)
+          ?.map((e) => Plan.fromJson(e as Map<String, dynamic>))
           .toList(),
-      threeGFourG: (json['3G/4G'] as List<dynamic>)
-          .map((e) => Plan.fromJson(e as Map<String, dynamic>))
+      threeGFourG: (json['3G/4G'] as List<dynamic>?)
+          ?.map((e) => Plan.fromJson(e as Map<String, dynamic>))
           .toList(),
-      romaing: (json['Romaing'] as List<dynamic>)
-          .map((e) => Plan.fromJson(e as Map<String, dynamic>))
+      romaing: (json['Romaing'] as List<dynamic>?)
+          ?.map((e) => Plan.fromJson(e as Map<String, dynamic>))
           .toList(),
-      combo: (json['COMBO'] as List<dynamic>)
-          .map((e) => Plan.fromJson(e as Map<String, dynamic>))
+      combo: (json['COMBO'] as List<dynamic>?)
+          ?.map((e) => Plan.fromJson(e as Map<String, dynamic>))
           .toList(),
+      msg: json['msg'] as String?,
     );
 
 Map<String, dynamic> _$RecordsToJson(Records instance) => <String, dynamic>{
@@ -52,6 +57,7 @@ Map<String, dynamic> _$RecordsToJson(Records instance) => <String, dynamic>{
       '3G/4G': instance.threeGFourG,
       'Romaing': instance.romaing,
       'COMBO': instance.combo,
+      'msg': instance.msg,
     };
 
 Plan _$PlanFromJson(Map<String, dynamic> json) => Plan(

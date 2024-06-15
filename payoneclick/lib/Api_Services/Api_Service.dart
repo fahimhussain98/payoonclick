@@ -280,7 +280,7 @@ class ApiServices {
   }
 
 //_________________home => Mobile Recharge Screen_____________________
-  Future<BrowsePlanModel?> getBrowsePlan(String userID, String operatorName, String circle) async {
+  Future<BrowsePlanModel?> getBrowsePlan(String userID, String dropdownValue2, String selectedState) async { //dropdownValue2 => operatorNmae, //selectedState => circle
     try {
       var url = Uri.parse("http://api.payonclick.in/Vr1.0/74536/DJKIJF09320923JSDFOJDFLMSDS/KVLKMS09232309283KJSDJLWLEEJ203/api/MplanMobileSimplePlan");
       final headers = {
@@ -291,8 +291,8 @@ class ApiServices {
         "userID": userID,
         "tokenKey": "1234",
         "deviceInfo": "1234",
-        "operatorName": operatorName,
-        "circle": circle,
+        "operatorName": dropdownValue2,
+        "circle": selectedState,
       });
 
       var response = await http.post(url, headers: headers, body: body);
