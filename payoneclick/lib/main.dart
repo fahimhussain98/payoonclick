@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:payoneclick/Api_Services/Api_models/Login_Model.dart';
 import 'package:payoneclick/TabBar/TopUp.dart';
+import 'package:payoneclick/TabBar/fullTT.dart';
 import 'package:payoneclick/TabBar/tabBar.dart';
 
 import 'package:payoneclick/screens/Loginpage.dart';
@@ -50,8 +51,11 @@ class MyApp extends StatelessWidget {
 
 
       // showStateTextField: true,),
-    //  home: MobileRechargeTabBar(title: "Your Plans",),
-    //  home: TopUp(),
+    //  home: MobileRechargeTabBar(title: "Your Plans",userID: "AhCtz8JqpO5ZZSAo4QSneFunsKFHQMXB",dropdownValue2: "Reliance Jio",selectedState: "Delhi NCR",),
+    //  home: TopUp(userID: "AhCtz8JqpO5ZZSAo4QSneFunsKFHQMXB",dropdownValue2: "VI",selectedState: "Delhi NCR",),
+
+
+    //  home: fullTT(userID: "AhCtz8JqpO5ZZSAo4QSneFunsKFHQMXB",dropdownValue2: "Reliance Jio",selectedState: "Delhi NCR",),
     );
   }
 }

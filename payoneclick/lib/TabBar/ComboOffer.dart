@@ -92,7 +92,7 @@ class _ComboOfferState extends State<ComboOffer> {
     return Scaffold(
       body: Center(
         child: browsePlan == null
-            ? CircularProgressIndicator()
+            ? Container(child: Center(child: Text("Loading data...",style: TextStyle(fontSize: 14,),)),)
             : errorMessage != null
             ? Text('Error: $errorMessage')
             : ListView.builder(

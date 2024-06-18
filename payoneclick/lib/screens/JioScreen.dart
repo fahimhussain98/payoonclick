@@ -371,10 +371,15 @@ class _JioScreenState extends State<JioScreen> {
 
                                               ) ));
                                     },
-                                      child: Text("Browse Plan",style: TextStyle(fontSize: 13,))),
+                                      child: Text("Browse Plan",style: TextStyle(fontSize: 13,))
+                                  ),
                                   Spacer(),
 
-                                  Text("My plains ",style: TextStyle(fontSize: 13,color: Colors.indigo),),
+                                  InkWell(
+                                    onTap: (){},
+                                    child: Text(
+                                      "My plains ",style: TextStyle(fontSize: 13,color: Colors.indigo),),
+                                  ),
                                   Image.asset("image/ACE.png"),
 
                                 ],

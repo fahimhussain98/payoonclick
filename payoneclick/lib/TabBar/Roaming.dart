@@ -88,7 +88,7 @@ class _RoamingState extends State<Roaming> {
     return Scaffold(
       body: Center(
         child: browsePlan == null
-            ? CircularProgressIndicator()
+            ? Container(child: Center(child: Text("Loading data...",style: TextStyle(fontSize: 14,),)),)
             : errorMessage != null
             ? Text('Error: $errorMessage')
             : ListView.builder(
